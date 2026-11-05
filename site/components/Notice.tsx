@@ -17,9 +17,11 @@ export function Notice({ locale }: { locale: Locale }) {
   return (
     <div className="notice">
       <div>
-        <a className="notice__mail" href={`mailto:${profile.email}`}>
-          {profile.email}
-        </a>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: `<!--email_off--><a class="notice__mail" href="mailto:${profile.email}">${profile.email}</a><!--/email_off-->`,
+          }}
+        />
         <p style={{ marginTop: "1.5rem", maxWidth: "34rem", lineHeight: 1.55 }}>
           {c.lead}
         </p>

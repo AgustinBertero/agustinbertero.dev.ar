@@ -44,7 +44,12 @@ export default function CvPage() {
         <h1>{profile.name}</h1>
         <p className="cv__role">{profile.role[locale]}</p>
         <p className="cv__contact">
-          {profile.email} · linkedin.com/in/agustinbertero · github.com/AgustinBertero ·{" "}
+          <span
+            dangerouslySetInnerHTML={{
+              __html: `<!--email_off-->${profile.email}<!--/email_off-->`,
+            }}
+          />{" "}
+          · linkedin.com/in/agustinbertero · github.com/AgustinBertero ·{" "}
           {profile.site}
         </p>
         <p className="cv__contact">
