@@ -5,7 +5,11 @@
 set -euo pipefail
 
 REPO_DIR="${REPO_DIR:-/srv/portfolio}"
-compose() { docker compose -f "$REPO_DIR/infra/compose.yaml" "$@"; }
+COMPOSE_FILES=(-f "$REPO_DIR/infra/compose.yaml")
+if [[ -f "$REPO_DIR/infra/compose.local.yaml" ]]; then
+    COMPOSE_FILES+=(-f "$REPO_DIR/infra/compose.local.yaml")
+fi
+compose() { docker compose "${COMPOSE_FILES[@]}" "$@"; }
 
 status=0
 reset() {
