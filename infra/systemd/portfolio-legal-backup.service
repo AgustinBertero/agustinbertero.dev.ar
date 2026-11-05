@@ -1,0 +1,10 @@
+[Unit]
+Description=Portfolio: offsite backup for the legal case app
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+User=deploy
+WorkingDirectory=/srv/portfolio
+ExecStart=/srv/portfolio/infra/scripts/legal-backup.sh

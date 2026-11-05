@@ -6,6 +6,8 @@ credentials-file: /root/.cloudflared/75ea8abd-db17-4f6c-b817-386c4f105439.json
 ingress:
   - hostname: portfolio.bertium.net
     service: http://127.0.0.1:8080
+  - hostname: casos.bertium.net
+    service: http://127.0.0.1:8080
   - hostname: agustinbertero.dev.ar
     service: http://127.0.0.1:8080
   - service: http_status:404

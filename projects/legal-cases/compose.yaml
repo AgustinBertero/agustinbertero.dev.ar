@@ -1,0 +1,52 @@
+# projects/legal-cases/compose.yaml — private legal case app. Included from infra/compose.yaml.
+x-legal-defaults: &defaults
+  restart: unless-stopped
+  security_opt: ["no-new-privileges:true"]
+  logging:
+    driver: json-file
+    options: { max-size: "10m", max-file: "3" }
+
+services:
+  legal-web:
+    <<: *defaults
+    image: ghcr.io/agustinbertero/portfolio-legal-cases:latest
+    env_file: ../../env/legal.env
+    networks: [legal_edge, legal_backend]
+    # serversideup/php writes generated nginx config at startup; read-only needs extra tmpfs.
+    read_only: false
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    volumes:
+      - legal_storage:/var/www/html/storage/app
+    depends_on:
+      legal-db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits: { cpus: "0.50", memory: 384M }
+
+  legal-db:
+    <<: *defaults
+    image: postgres:17-alpine
+    env_file: ../../env/legal.env
+    networks: [legal_backend]
+    volumes:
+      - legal_db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits: { cpus: "0.50", memory: 256M }
+
+networks:
+  legal_edge:
+    internal: true
+  legal_backend:
+    internal: true
+
+volumes:
+  legal_storage:
+  legal_db:
