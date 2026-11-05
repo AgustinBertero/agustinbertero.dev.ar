@@ -4,14 +4,20 @@
 set -euo pipefail
 
 REPO_DIR="${REPO_DIR:-/srv/portfolio}"
-compose() { docker compose -f "$REPO_DIR/infra/compose.yaml" "$@"; }
+COMPOSE_FILES=(-f "$REPO_DIR/infra/compose.yaml")
+# On server1 the gateway is published on loopback and Cloudflare runs as a systemd
+# tunnel, so the local override is part of production here.
+if [[ -f "$REPO_DIR/infra/compose.local.yaml" ]]; then
+    COMPOSE_FILES+=(-f "$REPO_DIR/infra/compose.local.yaml")
+fi
+compose() { docker compose "${COMPOSE_FILES[@]}" "$@"; }
 
 cd "$REPO_DIR"
 before="$(git rev-parse HEAD)"
 git pull --ff-only --quiet
 after="$(git rev-parse HEAD)"
 
-compose pull --quiet
+compose pull --quiet --ignore-pull-failures
 compose up -d --remove-orphans
 
 # Los archivos del gateway están montados: si cambiaron, validar y recargar sin cortar el servicio.

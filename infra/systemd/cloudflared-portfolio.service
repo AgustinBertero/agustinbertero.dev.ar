@@ -1,0 +1,14 @@
+[Unit]
+Description=Cloudflare Tunnel for agustinbertero.dev.ar
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/cloudflared --config /etc/cloudflared/portfolio.yml --no-autoupdate tunnel run
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
