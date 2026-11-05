@@ -42,6 +42,7 @@ Full stack con experiencia operativa real: administra los servidores donde corre
 - Nivel de inglés: se publica como "intermedio" (decisión del usuario; CV y LinkedIn quedan pendientes de unificar).
 - No se publica el teléfono.
 - Proyecto inicial visible: helpdesk con triage por IA, live en `/helpdesk/`, con demo pública y caso de estudio en `/projects/helpdesk/`.
+- Segundo proyecto: gestión de expedientes para un estudio jurídico, privado en `casos.bertium.net`, con caso de estudio en `/projects/legal-cases/` (capturas sintéticas).
 
 ## Brand Commitments
 

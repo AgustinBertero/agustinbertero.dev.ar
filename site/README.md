@@ -14,7 +14,7 @@ Recruiters and hiring managers open a portfolio from LinkedIn or a job applicati
 
 - Spanish at `/`, English at `/en/`, with per-language metadata and Open Graph tags.
 - Profile sheet with availability seal and a section index; sections for projects, experience, stack, about and contact.
-- Project cards driven by `content/projects.ts`; the helpdesk card is live, links to `/helpdesk/` and has a case study at `/projects/helpdesk/`.
+- Project cards driven by `content/projects.ts`: the helpdesk has a public demo and case study; the legal case app is private and has a case study at `/projects/legal-cases/`.
 - Contact by email and LinkedIn only. CV downloadable in a public version without the phone number.
 - Self-hosted Archivo and Courier Prime, no third-party scripts, readable without JavaScript.
 

@@ -35,6 +35,11 @@ check("routes exist", () => {
     "error/index.html",
     "projects/helpdesk/index.html",
     "en/projects/helpdesk/index.html",
+    "projects/legal-cases/index.html",
+    "en/projects/legal-cases/index.html",
+    "projects/legal-cases/overview.png",
+    "projects/legal-cases/case.png",
+    "projects/legal-cases/og.png",
     "projects/helpdesk/overview.png",
     "projects/helpdesk/ticket.png",
     "projects/helpdesk/og.png",
@@ -63,7 +68,7 @@ check("languages and alternates", () => {
 });
 
 check("metadata and JSON-LD", () => {
-  for (const file of ["index.html", "en/index.html", "projects/helpdesk/index.html", "en/projects/helpdesk/index.html"]) {
+  for (const file of ["index.html", "en/index.html", "projects/helpdesk/index.html", "en/projects/helpdesk/index.html", "projects/legal-cases/index.html", "en/projects/legal-cases/index.html"]) {
     const html = read(file);
     expectIncludes(html, 'rel="canonical"', file);
     expectIncludes(html, 'href="https://portfolio.bertium.net/', file);
@@ -83,6 +88,8 @@ check("robots and sitemap point at the live domain", () => {
   expectIncludes(sitemap, "https://portfolio.bertium.net/cv/", "sitemap");
   expectIncludes(sitemap, "https://portfolio.bertium.net/projects/helpdesk/", "sitemap");
   expectIncludes(sitemap, "https://portfolio.bertium.net/en/projects/helpdesk/", "sitemap");
+  expectIncludes(sitemap, "https://portfolio.bertium.net/projects/legal-cases/", "sitemap");
+  expectIncludes(sitemap, "https://portfolio.bertium.net/en/projects/legal-cases/", "sitemap");
 });
 
 check("no phone published", () => {

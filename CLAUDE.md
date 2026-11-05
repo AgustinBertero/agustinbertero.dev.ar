@@ -29,6 +29,14 @@ make down
 - `site/app/globals.css` is the design system: tokens, cover, sections, CV, print and responsive rules. `DESIGN.md` at the repo root documents it.
 - `site/public/cv/agustin-bertero-cv.pdf` is generated from `/cv/`; see “CV” below.
 - `projects/helpdesk/` is the Laravel + Inertia + React demo; the gateway serves it at `/helpdesk/` and the case study lives at `/projects/helpdesk/`.
+- `projects/legal-cases/` is the private legal case app at `casos.bertium.net`; no public registration, no public demo. The portfolio case study lives at `/projects/legal-cases/`.
+
+## Legal case app
+
+- Commands run from `projects/legal-cases/`.
+- `make ci`, `make up` (local compose), `php artisan migrate`, `php artisan legal:create-owner`.
+- Repo uses `env/legal.env` on the server; never commit it. `APP_KEY` encrypts documents: back it up separately from the database.
+- Do not expose `casos.bertium.net` without Cloudflare Access. Do not seed demo data into the production database.
 
 ## Tests
 

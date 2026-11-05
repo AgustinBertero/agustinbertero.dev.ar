@@ -50,8 +50,41 @@ export const projects: Project[] = [
     caseStudy: "/projects/helpdesk/",
   },
   {
-    slug: "site",
+    slug: "legal-cases",
     num: "02",
+    status: "live",
+    title: {
+      es: "Gestión de expedientes para un estudio jurídico",
+      en: "Legal case management for a law firm",
+    },
+    summary: {
+      es: "Clientes, expedientes, vencimientos, tareas y documentos cifrados en un solo lugar. Roles, auditoría y acceso privado; las capturas usan datos sintéticos.",
+      en: "Clients, cases, deadlines, tasks and encrypted documents in one place. Roles, audit trail and private access; screenshots use synthetic data.",
+    },
+    rows: [
+      {
+        label: { es: "Stack", en: "Stack" },
+        value: { es: "Laravel 12 · Inertia · React 19 · TypeScript", en: "Laravel 12 · Inertia · React 19 · TypeScript" },
+      },
+      {
+        label: { es: "Datos", en: "Data" },
+        value: { es: "PostgreSQL · documentos cifrados en reposo", en: "PostgreSQL · documents encrypted at rest" },
+      },
+      {
+        label: { es: "Infra", en: "Infra" },
+        value: { es: "Docker · Cloudflare Tunnel · Cloudflare Access", en: "Docker · Cloudflare Tunnel · Cloudflare Access" },
+      },
+      {
+        label: { es: "Acceso", en: "Access" },
+        value: { es: "Privado · sin registro público", en: "Private · no public sign-up" },
+      },
+    ],
+    repo: "https://github.com/AgustinBertero/agustinbertero.dev.ar/tree/main/projects/legal-cases",
+    caseStudy: "/projects/legal-cases/",
+  },
+  {
+    slug: "site",
+    num: "03",
     status: "live",
     title: {
       es: "Este sitio",

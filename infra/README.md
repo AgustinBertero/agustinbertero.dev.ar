@@ -27,6 +27,17 @@ dev.ar allows one A/CNAME record and does not delegate the zone. A CNAME to a pr
 - **Nightly reset:** `portfolio-demo-reset.timer` runs `infra/scripts/demo-reset.sh`, which executes `php artisan demo:reset --force`.
 - **Rate limit:** the gateway applies the `ai` zone to `POST /helpdesk/tickets/{id}/triage`.
 
+## Legal case app (private)
+
+- **URL:** `https://casos.bertium.net/` (login required; Cloudflare Access should gate the hostname).
+- **Services:** `legal-web`, `legal-db` from `projects/legal-cases/compose.yaml`.
+- **Secrets:** `env/legal.env` (mode 600, owned by `deploy`). `APP_KEY` encrypts documents; back it up separately.
+- **First owner:** `docker compose ... exec legal-web php artisan legal:create-owner`.
+- **Migrations:** `docker compose ... exec legal-web php artisan migrate --force`.
+- **Documents:** named volume `portfolio_legal_storage`, encrypted by the app before writing.
+- **Backups:** `infra/scripts/legal-backup.sh` + `portfolio-legal-backup.timer`; needs `env/legal-backup.env` with restic/R2 credentials and a restore test. Not active until configured.
+- **Access:** no public demo and no registration. Do not enter real client data until Cloudflare Access is configured.
+
 ## Cloudflare Tunnel
 
 - Tunnel: `portfolio` (`75ea8abd-db17-4f6c-b817-386c4f105439`).
