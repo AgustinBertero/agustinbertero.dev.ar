@@ -32,7 +32,7 @@ export function Cover({ locale }: { locale: Locale }) {
             <b>{cover.roleLead}</b> {cover.roleRest}
           </p>
           <div className="cover__actions">
-            <a className="btn btn--fill" href="#anexos">
+            <a className="btn btn--fill" href="#projects">
               {cover.primary}
               <span className="btn-ref">{cover.primaryRef}</span>
             </a>

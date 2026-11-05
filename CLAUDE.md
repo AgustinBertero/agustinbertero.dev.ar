@@ -25,7 +25,7 @@ make down
 
 - `site/app/(es)/` → `/`, `/cv/` and `/error/`; `site/app/(en)/en/` → `/en/`. Two root layouts carry `lang` and metadata. Nginx serves `/error/index.html` for 404s, so the error page stays styled and declares `lang="es"`.
 - `site/content/profile.ts` is the only source of profile facts (ES/EN). `site/content/projects.ts` drives the project cards. `site/content/copy.ts` holds UI copy and section text.
-- `site/components/` holds the cover, sections, exhibits and the small motion client component.
+- `site/components/` holds the profile sheet, sections, project cards and the small motion client component.
 - `site/app/globals.css` is the design system: tokens, cover, sections, CV, print and responsive rules. `DESIGN.md` at the repo root documents it.
 - `site/public/cv/agustin-bertero-cv.pdf` is generated from `/cv/`; see “CV” below.
 

@@ -28,7 +28,7 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Agustin Bertero, Full Stack Developer — portfolio en formato expediente",
+        alt: "Agustin Bertero, Full Stack Developer — portfolio en formato dossier técnico",
       },
     ],
   },

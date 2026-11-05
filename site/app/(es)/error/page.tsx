@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "404 — Expediente no encontrado",
+  title: "404 — Página no encontrada",
   robots: { index: false, follow: false },
 };
 
@@ -19,7 +19,7 @@ export default function NotFound() {
       }}
     >
       <p className="mono" style={{ color: "var(--color-stamp)", margin: 0 }}>
-        Error 404 · Folio extraviado
+        Error 404 · Ruta inexistente
       </p>
       <h1
         style={{
@@ -31,21 +31,21 @@ export default function NotFound() {
           letterSpacing: "-0.03em",
         }}
       >
-        Este expediente no existe.
+        Esta página no existe.
       </h1>
       <p style={{ margin: 0, maxWidth: "34rem", lineHeight: 1.6 }}>
-        La dirección no corresponde a ningún documento del archivo. Revisá el
-        enlace o volvé a la carátula.
+        La dirección no corresponde a ninguna página del portfolio. Revisá el
+        enlace o volvé al inicio.
       </p>
       <p
         className="mono"
         style={{ margin: 0, maxWidth: "34rem", color: "var(--color-ink-soft)" }}
       >
-        This file does not exist. Check the link or return to the cover sheet.
+        This page does not exist. Check the link or go back to the home page.
       </p>
       <p style={{ margin: 0 }}>
         <Link href="/" className="link">
-          Volver a la carátula
+          Volver al inicio
         </Link>
       </p>
     </main>

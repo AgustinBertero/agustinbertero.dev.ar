@@ -14,7 +14,7 @@ export function Exhibits({ locale }: { locale: Locale }) {
         const stamp = project.status === "live" ? p.statusLive : p.statusWip;
 
         return (
-          <article key={project.slug} className="exhibit" id={`anexo-${project.slug}`}>
+          <article key={project.slug} className="exhibit" id={`project-${project.slug}`}>
             <div className="exhibit__tag mono">
               <span>
                 {p.exhibit} {project.num}
@@ -65,8 +65,8 @@ export function Exhibits({ locale }: { locale: Locale }) {
       <p className="mono" style={{ marginTop: "1.25rem", color: "var(--color-ink-soft)" }}>
         {projectText.exhibit[locale]} 01–{projects[projects.length - 1].num} ·{" "}
         {locale === "es"
-          ? "Cada anexo se publica cuando la demo funciona."
-          : "Each exhibit ships when its demo works."}
+          ? "Cada proyecto se publica cuando la demo funciona."
+          : "Each project ships when its demo works."}
       </p>
     </>
   );

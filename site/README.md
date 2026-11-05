@@ -13,7 +13,7 @@ Recruiters and hiring managers open a portfolio from LinkedIn or a job applicati
 ## Features
 
 - Spanish at `/`, English at `/en/`, with per-language metadata and Open Graph tags.
-- Cover sheet with availability seal and a file index; sections for exhibits (projects), record (experience), findings (stack), statement (about) and notice (contact).
+- Profile sheet with availability seal and a section index; sections for projects, experience, stack, about and contact.
 - Project cards driven by `content/projects.ts`; the helpdesk project appears as “in progress” until its demo works.
 - Contact by email and LinkedIn only. CV downloadable in a public version without the phone number.
 - Self-hosted Archivo and Courier Prime, no third-party scripts, readable without JavaScript.
@@ -40,7 +40,7 @@ flowchart LR
 ## Key decisions
 
 - **Static export instead of a Node server.** The page has no dynamic data; a static export removes a runtime and most of the attack surface. The trade-off is that metadata and routes are resolved at build time.
-- **A case file, not a hero.** The visual system (paper, rules, folios, stamp) comes from the legal background and gives the page a structure that is hard to confuse with a template. The first viewport is the cover sheet; the design contract lives in `DESIGN.md`.
+- **A technical dossier, not a hero.** The visual system (paper, rules, section numbers, stamp) gives the page a structure that is hard to confuse with a template. The first viewport is the profile sheet; the design contract lives in `DESIGN.md`.
 - **Two root layouts for two languages.** `/` and `/en/` carry their own `<html lang>`, metadata and alternates without client-side language switching.
 - **No contact form.** Email and LinkedIn are enough; a form would add spam, storage and privacy work for no gain.
 - **Content in TypeScript, not Markdown.** Profile facts live in `content/profile.ts` and project cards in `content/projects.ts`, so the landing and the CV read from one source.

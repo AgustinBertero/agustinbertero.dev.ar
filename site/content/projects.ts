@@ -85,7 +85,7 @@ export const projectText = {
     live: { es: "En producción", en: "Live" },
     wip: { es: "En desarrollo", en: "In progress" },
   } satisfies Record<ProjectStatus, Bilingual>,
-  exhibit: { es: "Anexo", en: "Exhibit" },
+  exhibit: { es: "Proyecto", en: "Project" },
   demo: { es: "Ver demo", en: "View demo" },
   repo: { es: "Código", en: "Code" },
   pending: { es: "Código próximamente", en: "Code coming soon" },
