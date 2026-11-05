@@ -4,7 +4,8 @@ The portfolio runs on `server1.bertium.net` (mini PC, `192.168.1.135`, Tailscale
 
 ```
 Browser
-  └── Cloudflare edge (portfolio.bertium.net)
+  ├── Cloudflare edge (portfolio.bertium.net)
+  └── Cloudflare edge + Access (casos.bertium.net)
         └── Cloudflare Tunnel "portfolio" (systemd)
               └── 127.0.0.1:8080 gateway (nginx-unprivileged)
                     └── site-web:8080 (static Next.js export)
@@ -44,7 +45,7 @@ dev.ar allows one A/CNAME record and does not delegate the zone. A CNAME to a pr
 - Config: `/etc/cloudflared/portfolio.yml` (tracked in `infra/cloudflared/portfolio.yml`).
 - Service: `cloudflared-portfolio.service` (tracked in `infra/systemd/`).
 - Credentials: `/root/.cloudflared/75ea8abd-db17-4f6c-b817-386c4f105439.json`, never committed.
-- Public hostnames: `portfolio.bertium.net` (and `agustinbertero.dev.ar`, ready if the alias ever moves back to DNS) → `http://127.0.0.1:8080`.
+- Public hostnames: `portfolio.bertium.net`, `casos.bertium.net` and `agustinbertero.dev.ar` → `http://127.0.0.1:8080` (the gateway routes by Host).
 - The tunnel is managed with a local config file, not a dashboard token, so `cloudflared tunnel list` and the config on disk are the source of truth.
 
 ## Compose
