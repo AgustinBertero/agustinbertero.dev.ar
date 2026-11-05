@@ -52,7 +52,7 @@ export type Copy = {
 };
 
 const es: Copy = {
-  langSwitch: { label: "EN", href: "/en/", aria: "Ver el sitio en inglés" },
+  langSwitch: { label: "EN", href: "/en/", aria: "Ver el sitio en inglés (EN)" },
   head: {
     file: "Expediente AB—2026—001",
     descriptor: "Portfolio · Full Stack Developer",
@@ -154,7 +154,7 @@ const es: Copy = {
 };
 
 const en: Copy = {
-  langSwitch: { label: "ES", href: "/", aria: "View this site in Spanish" },
+  langSwitch: { label: "ES", href: "/", aria: "View this site in Spanish (ES)" },
   head: {
     file: "File AB—2026—001",
     descriptor: "Portfolio · Full Stack Developer",
