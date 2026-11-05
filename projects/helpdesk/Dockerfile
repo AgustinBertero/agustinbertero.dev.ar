@@ -1,6 +1,7 @@
 # projects/helpdesk/Dockerfile
 FROM node:22-alpine AS assets
 WORKDIR /app
+ENV VITE_BASE_PATH=/helpdesk/
 COPY package.json package-lock.json ./
 RUN npm ci
 COPY resources ./resources
