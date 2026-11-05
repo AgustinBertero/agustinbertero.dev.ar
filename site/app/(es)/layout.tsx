@@ -10,7 +10,9 @@ export const metadata: Metadata = {
   },
   description:
     "Full Stack Developer especializado en PHP/Laravel, React y TypeScript, con experiencia real en infraestructura Linux y cloud. Disponible para trabajo remoto en Argentina, España y Europa.",
-  robots: { index: true, follow: true },
+  authors: [{ name: "Agustin Bertero", url: "https://portfolio.bertium.net/" }],
+  creator: "Agustin Bertero",
+  robots: { index: true, follow: true, "max-image-preview": "large" },
   alternates: {
     canonical: "/",
     languages: { es: "/", en: "/en/", "x-default": "/" },
