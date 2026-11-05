@@ -11,13 +11,14 @@ export type Project = {
   rows: { label: Bilingual; value: Bilingual }[];
   demo?: string;
   repo?: string;
+  caseStudy?: string;
 };
 
 export const projects: Project[] = [
   {
     slug: "helpdesk",
     num: "01",
-    status: "wip",
+    status: "live",
     title: {
       es: "Helpdesk con triage por IA",
       en: "Helpdesk with AI triage",
@@ -41,9 +42,12 @@ export const projects: Project[] = [
       },
       {
         label: { es: "Demo", en: "Demo" },
-        value: { es: "Próximamente", en: "Coming soon" },
+        value: { es: "Pública · sin login", en: "Public · no login" },
       },
     ],
+    demo: "/helpdesk/",
+    repo: "https://github.com/AgustinBertero/agustinbertero.dev.ar/tree/main/projects/helpdesk",
+    caseStudy: "/projects/helpdesk/",
   },
   {
     slug: "site",

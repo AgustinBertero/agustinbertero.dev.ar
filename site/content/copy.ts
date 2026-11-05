@@ -35,6 +35,7 @@ export type Copy = {
     demo: string;
     repo: string;
     pending: string;
+    caseStudy: string;
   };
   statement: {
     credentialTitle: string;
@@ -129,6 +130,7 @@ const es: Copy = {
     demo: "Ver demo",
     repo: "Código",
     pending: "Código próximamente",
+    caseStudy: "Caso",
   },
   statement: {
     credentialTitle: "Credenciales",
@@ -231,6 +233,7 @@ const en: Copy = {
     demo: "View demo",
     repo: "Code",
     pending: "Code coming soon",
+    caseStudy: "Case study",
   },
   statement: {
     credentialTitle: "Credentials",

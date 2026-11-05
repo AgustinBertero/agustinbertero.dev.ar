@@ -41,7 +41,7 @@ Full stack con experiencia operativa real: administra los servidores donde corre
 - Nada inventado: ni métricas, ni clientes, ni testimonios. Las cifras se publican tal como están en `profile.md`.
 - Nivel de inglés: se publica como "intermedio" (decisión del usuario; CV y LinkedIn quedan pendientes de unificar).
 - No se publica el teléfono.
-- Proyecto inicial visible: helpdesk con triage por IA, en estado "en desarrollo".
+- Proyecto inicial visible: helpdesk con triage por IA, live en `/helpdesk/`, con demo pública y caso de estudio en `/projects/helpdesk/`.
 
 ## Brand Commitments
 

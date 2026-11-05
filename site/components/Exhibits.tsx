@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { copy } from "@/content/copy";
 import type { Locale } from "@/content/profile";
 import { projects, projectText } from "@/content/projects";
@@ -26,6 +27,11 @@ export function Exhibits({ locale }: { locale: Locale }) {
               <h3 className="exhibit__title">{project.title[locale]}</h3>
               <p className="exhibit__summary">{project.summary[locale]}</p>
               <div className="exhibit__links">
+                {project.caseStudy ? (
+                  <Link className="link" href={locale === "en" ? `/en${project.caseStudy}` : project.caseStudy}>
+                    {p.caseStudy}
+                  </Link>
+                ) : null}
                 {project.demo ? (
                   <a className="link" href={project.demo}>
                     {p.demo}

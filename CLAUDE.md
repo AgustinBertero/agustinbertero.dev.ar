@@ -28,6 +28,7 @@ make down
 - `site/components/` holds the profile sheet, sections, project cards and the small motion client component.
 - `site/app/globals.css` is the design system: tokens, cover, sections, CV, print and responsive rules. `DESIGN.md` at the repo root documents it.
 - `site/public/cv/agustin-bertero-cv.pdf` is generated from `/cv/`; see “CV” below.
+- `projects/helpdesk/` is the Laravel + Inertia + React demo; the gateway serves it at `/helpdesk/` and the case study lives at `/projects/helpdesk/`.
 
 ## Tests
 

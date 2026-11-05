@@ -33,6 +33,11 @@ check("routes exist", () => {
     "cv/index.html",
     "404.html",
     "error/index.html",
+    "projects/helpdesk/index.html",
+    "en/projects/helpdesk/index.html",
+    "projects/helpdesk/overview.png",
+    "projects/helpdesk/ticket.png",
+    "projects/helpdesk/og.png",
     "favicon.ico",
     "icon.png",
     "apple-icon.png",
@@ -58,7 +63,7 @@ check("languages and alternates", () => {
 });
 
 check("metadata and JSON-LD", () => {
-  for (const file of ["index.html", "en/index.html"]) {
+  for (const file of ["index.html", "en/index.html", "projects/helpdesk/index.html", "en/projects/helpdesk/index.html"]) {
     const html = read(file);
     expectIncludes(html, 'rel="canonical"', file);
     expectIncludes(html, 'href="https://portfolio.bertium.net/', file);
@@ -76,6 +81,8 @@ check("robots and sitemap point at the live domain", () => {
   expectIncludes(sitemap, "https://portfolio.bertium.net/", "sitemap");
   expectIncludes(sitemap, "https://portfolio.bertium.net/en/", "sitemap");
   expectIncludes(sitemap, "https://portfolio.bertium.net/cv/", "sitemap");
+  expectIncludes(sitemap, "https://portfolio.bertium.net/projects/helpdesk/", "sitemap");
+  expectIncludes(sitemap, "https://portfolio.bertium.net/en/projects/helpdesk/", "sitemap");
 });
 
 check("no phone published", () => {
@@ -103,7 +110,7 @@ check("internal navigation resolves", () => {
   for (const file of ["index.html", "en/index.html"]) {
     const html = read(file);
     for (const [, href] of html.matchAll(/href=["'](\/[^"'#?]*)["']/g)) {
-      if (href.startsWith("/_next/") || href.endsWith(".pdf") || href.endsWith(".woff2")) continue;
+      if (href.startsWith("/_next/") || href.startsWith("/helpdesk") || href.endsWith(".pdf") || href.endsWith(".woff2")) continue;
       const target = href.endsWith("/") ? `${href.slice(1)}index.html` : href.slice(1);
       if (!existsSync(join(root, target))) throw new Error(`${file} links to missing ${href}`);
     }
