@@ -186,7 +186,6 @@ export default function TicketsIndex({ tickets, filters, stats }: Props) {
                                     className="hd-row"
                                     href={`${basePath}/tickets/${ticket.id}`}
                                     key={ticket.id}
-                                    aria-label={`Abrir ticket ${ticket.id}: ${ticket.subject}`}
                                 >
                                     <div>
                                         <p className="hd-row__subject">{ticket.subject}</p>

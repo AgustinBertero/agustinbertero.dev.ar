@@ -40,6 +40,7 @@ export default function HelpdeskLayout({
                 </div>
             </div>
 
+            <main id="main">
             <header className="hd-header">
                 <div>
                     <p className="hd-kicker">{eyebrow}</p>
@@ -56,6 +57,7 @@ export default function HelpdeskLayout({
             ) : null}
 
             {children}
+            </main>
 
             <footer className="hd-foot mono">
                 <span>Demo sintética: no introduzcas datos reales. Se reinicia cada noche.</span>
