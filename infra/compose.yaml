@@ -5,6 +5,7 @@ name: portfolio
 
 include:
   - ../site/compose.yaml
+  - ../projects/helpdesk/compose.yaml
   # - ../projects/<slug>/compose.yaml      ← una línea por proyecto (skill nuevo-proyecto)
 
 x-infra-defaults: &defaults
@@ -29,6 +30,7 @@ services:
     networks:
       - edge
       - site_edge
+      - helpdesk_edge
       # - <slug>_edge                          ← una por proyecto (skill nuevo-proyecto)
     deploy:
       resources:

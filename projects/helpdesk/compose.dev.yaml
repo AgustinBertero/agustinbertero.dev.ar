@@ -1,0 +1,45 @@
+# projects/helpdesk/compose.dev.yaml — preview local con la imagen de producción.
+name: portfolio-helpdesk-dev
+
+services:
+  helpdesk-web:
+    build: .
+    image: ghcr.io/agustinbertero/portfolio-helpdesk:latest
+    env_file: .env
+    environment:
+      APP_ENV: local
+      APP_DEBUG: "true"
+      APP_URL: http://127.0.0.1:8088
+      ASSET_URL: http://127.0.0.1:8088
+      APP_PATH_PREFIX: ""
+      SESSION_PATH: /
+      SESSION_SECURE_COOKIE: "false"
+      DB_CONNECTION: pgsql
+      DB_HOST: helpdesk-db
+      DB_PORT: "5432"
+      DB_DATABASE: helpdesk
+      DB_USERNAME: helpdesk
+      DB_PASSWORD: helpdesk
+      QUEUE_CONNECTION: database
+      CACHE_STORE: database
+    ports:
+      - "127.0.0.1:8088:8080"
+    depends_on:
+      helpdesk-db:
+        condition: service_healthy
+  helpdesk-db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: helpdesk
+      POSTGRES_USER: helpdesk
+      POSTGRES_PASSWORD: helpdesk
+    volumes:
+      - helpdesk_dev_db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U helpdesk -d helpdesk"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  helpdesk_dev_db:

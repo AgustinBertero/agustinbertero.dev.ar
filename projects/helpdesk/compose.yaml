@@ -1,0 +1,66 @@
+# projects/helpdesk/compose.yaml — producción. Se incluye desde infra/compose.yaml.
+x-helpdesk-defaults: &defaults
+  restart: unless-stopped
+  security_opt: ["no-new-privileges:true"]
+  logging:
+    driver: json-file
+    options: { max-size: "10m", max-file: "3" }
+
+services:
+  helpdesk-web:
+    <<: *defaults
+    image: ghcr.io/agustinbertero/portfolio-helpdesk:latest
+    env_file: ../../env/helpdesk.env
+    networks: [helpdesk_edge, helpdesk_backend]
+    # serversideup/php generates its nginx config at startup; read-only would need extra tmpfs.
+    read_only: false
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    depends_on:
+      helpdesk-db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits: { cpus: "0.50", memory: 384M }
+
+  helpdesk-worker:
+    <<: *defaults
+    image: ghcr.io/agustinbertero/portfolio-helpdesk:latest
+    command: ["php", "artisan", "queue:work", "--tries=3", "--max-time=3600"]
+    env_file: ../../env/helpdesk.env
+    networks: [helpdesk_backend, helpdesk_egress]
+    read_only: false
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    depends_on:
+      helpdesk-db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits: { cpus: "0.25", memory: 256M }
+
+  helpdesk-db:
+    <<: *defaults
+    image: postgres:17-alpine
+    env_file: ../../env/helpdesk.env
+    networks: [helpdesk_backend]
+    volumes:
+      - helpdesk_db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits: { cpus: "0.50", memory: 256M }
+
+networks:
+  helpdesk_edge:
+    internal: true
+  helpdesk_backend:
+    internal: true
+  helpdesk_egress: {}
+
+volumes:
+  helpdesk_db:
