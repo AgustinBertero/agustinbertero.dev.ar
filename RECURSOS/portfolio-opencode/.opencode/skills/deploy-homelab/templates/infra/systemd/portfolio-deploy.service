@@ -1,0 +1,11 @@
+[Unit]
+Description=Portfolio: deploy por pull (repo + imágenes de GHCR)
+Wants=network-online.target
+After=network-online.target docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+User=deploy
+WorkingDirectory=/srv/portfolio
+ExecStart=/srv/portfolio/infra/scripts/pull-deploy.sh

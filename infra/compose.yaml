@@ -1,0 +1,51 @@
+# infra/compose.yaml — stack completo del portfolio en el mini PC.
+# Siempre: docker compose -f infra/compose.yaml ...
+
+name: portfolio
+
+include:
+  - ../site/compose.yaml
+  # - ../projects/<slug>/compose.yaml      ← una línea por proyecto (skill nuevo-proyecto)
+
+x-infra-defaults: &defaults
+  restart: unless-stopped
+  security_opt: ["no-new-privileges:true"]
+  logging:
+    driver: json-file
+    options: { max-size: "10m", max-file: "3" }
+
+services:
+  gateway:
+    <<: *defaults
+    image: nginxinc/nginx-unprivileged:1.31.7-alpine
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    volumes:
+      # Carpetas, no archivos sueltos: git pull reemplaza archivos y un bind mount de archivo no lo vería.
+      - ./gateway/conf.d:/etc/nginx/conf.d:ro
+      - ./gateway/snippets:/etc/nginx/snippets:ro
+      - ./gateway/projects:/etc/nginx/projects:ro
+    networks:
+      - edge
+      - site_edge
+      # - <slug>_edge                          ← una por proyecto (skill nuevo-proyecto)
+    deploy:
+      resources:
+        limits: { cpus: "0.50", memory: 128M }
+
+  cloudflared:
+    <<: *defaults
+    image: cloudflare/cloudflared:2026.10.7
+    command: ["tunnel", "--no-autoupdate", "run"]
+    env_file: ../env/infra.env                # TUNNEL_TOKEN=...
+    networks: [edge]
+    deploy:
+      resources:
+        limits: { cpus: "0.25", memory: 128M }
+
+networks:
+  edge:
+    ipam:
+      config:
+        - subnet: 172.30.10.0/24              # = set_real_ip_from en gateway/conf.d/default.conf

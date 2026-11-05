@@ -1,0 +1,35 @@
+Yo haría pocos proyectos, dos o tres, bien terminados, y elegidos para cubrir lo que hoy no se ve en tu perfil: código público en React/TypeScript, algo con IA y tu parte de infraestructura demostrada. Con la búsqueda de Lubee en mente, este es el orden en que los haría:
+
+Helpdesk con triage por IA. Es el que más te recomiendo, porque une tu experiencia real en soporte con desarrollo y con IA, que es justo el mix que te pidieron. Sería un sistema de tickets con backend en Laravel o Node y frontend en React + TypeScript, donde un LLM clasifica cada ticket por categoría y prioridad, resume hilos largos y sugiere respuestas a partir de una base de conocimiento (RAG). En una entrevista podés contar qué problema real de Sysprovider estás resolviendo, y eso pesa mucho más que una app genérica.
+Infraestructura como código de punta a punta. Un repo que levante una app Laravel en AWS con Terraform y Ansible, con Docker, Nginx, Cloudflare Tunnel, CI/CD con GitHub Actions, backups automáticos a S3 y monitoreo. Así tu experiencia de infra pasa a ser algo verificable, y Terraform y Ansible dejan de figurar como “nivel básico” en el CV. Lo ideal es que despliegue el proyecto 1, así los dos se refuerzan.
+Herramienta legal-tech o de privacidad. Es tu diferencial y casi nadie más lo tiene. Por ejemplo, un escáner que audita un sitio web contra el GDPR (cookies antes del consentimiento, scripts de terceros, política de privacidad) y genera un informe. También podría ser un analizador de contratos o términos de servicio con IA que marque cláusulas problemáticas. Un desarrollador que además es abogado y arma algo así se recuerda.
+
+Para que el portfolio rinda de verdad, algunos detalles:
+
+Demo online. Cada proyecto tiene que tener una demo funcionando, no solo el código.
+README en inglés. Con capturas o un GIF, la arquitectura y las decisiones técnicas. Además te sirve para practicar el inglés que te van a pedir.
+Tests y CI visibles. Aunque sean pocos tests, que se vea un pipeline de CI en verde.
+Repos fijados en GitHub. Fijá los tres en tu perfil.
+Un post en LinkedIn por proyecto. Hoy tenés 0 publicaciones, y contar qué construiste y por qué te da visibilidad ante recruiters como Federico.
+
+
+Sin pensar en Lubee, tu perfil apunta a puestos de Full Stack Laravel + React (muy demandados en remoto para España y Europa) y a roles cercanos a DevOps o plataforma. Estos son los que haría, aprovechando experiencia que ya tenés en vez de proyectos genéricos:
+
+SaaS para estudios jurídicos. Expedientes, clientes, vencimientos procesales con alertas, documentos en S3 y facturación. Con Laravel + React/TypeScript, multi-tenant, roles y permisos, colas, suscripciones con Stripe y tests. Sumale auditoría de accesos y exportación/borrado de datos según el GDPR. Es el proyecto que más se parece a lo que piden las ofertas de Laravel, y el dominio lo conocés por dentro como abogado. Si hacés uno solo, que sea este.
+Monitor para hosting y agencias. Un panel que controle uptime, vencimiento de certificados SSL, cambios de DNS, dominios por vencer y carga de servidores, con alertas por mail o Telegram. Sale directo de lo que hacés todos los días en Sysprovider y muestra tareas programadas, workers, integraciones y un dashboard en React. Además es algo que una agencia realmente usaría.
+Conector Odoo ↔ e-commerce. Un middleware que sincronice stock, productos y pedidos entre Odoo y PrestaShop o WooCommerce, con colas, reintentos, logs de errores y un panel para ver el estado de la sincronización. Es un problema real en el mundo e-commerce de España, y muy pocos desarrolladores muestran experiencia con Odoo, así que te diferencia para agencias y consultoras.
+Analizador de logs con enfoque forense. Procesa logs de Nginx, SSH y autenticación, detecta fuerza bruta, escaneos y accesos sospechosos, y genera un informe con hashes de integridad, como evidencia digital con cadena de custodia. Es el que mejor aprovecha tu diplomatura en cibercrimen y te abre la puerta a puestos de seguridad o SecOps. Puede ser una herramienta CLI en Node o Python con un pequeño frontend.
+
+Para unirlos, desplegá todos con la misma base de infraestructura como código (Terraform, Docker, GitHub Actions, Cloudflare). Así cada repo muestra desarrollo y operación al mismo tiempo, que es justamente lo que te distingue de un full stack típico.
+
+DESPLIEGUE : 
+
+Sí, es muy buena idea, y además el propio servidor se vuelve parte del portfolio. Documentalo como un proyecto más: diagrama de arquitectura, Docker Compose, Cloudflare Tunnel, backups y monitoreo. Encaja bien con lo de infraestructura como código: Ansible para provisionar el mini PC y Terraform con el provider de Cloudflare para DNS, túnel y políticas de Access, en lugar de AWS. Eso demuestra lo mismo y te cuesta cero.
+
+Como en esa máquina también tenés servicios de clientes, hay cosas que cuidaría:
+
+Aislar las demos de los clientes. Una demo pública suma superficie de ataque en un equipo donde hay datos de terceros, y frente al GDPR ese riesgo es tuyo. Lo ideal es una VM separada (por ejemplo con Proxmox). Como mínimo: redes Docker separadas, límites de CPU y RAM por contenedor, contenedores sin root, bases de datos propias y nunca montar el docker.sock en una demo.
+Hacer las demos a prueba de abuso. Cuentas demo que se reseteen solas con un cron, sin subidas de archivos libres ni envío de mails reales, rate limiting y reglas WAF en Cloudflare, y un tope de gasto en las API keys de IA. En el monitor y el analizador de logs, que la demo no permita apuntar a hosts arbitrarios, porque se convierte en una herramienta de escaneo gratis para cualquiera.
+Paneles de admin solo detrás de Cloudflare Access. Portainer y cualquier panel interno, nunca expuestos públicamente aunque tengan contraseña.
+Desplegar sin abrir nada. No uses runners self-hosted de GitHub Actions con repos públicos, porque un pull request desde un fork puede ejecutar código en tu servidor. Es mejor que Actions construya la imagen y la suba a GitHub Container Registry, y que el servidor la descargue (con Watchtower o un script). Así no necesitás exponer SSH ni romper el modelo del túnel.
+Prever que la demo se caiga. Un corte de luz o de internet en casa puede tumbarla justo cuando la abre un recruiter. Ayudan un SAI, backups fuera de casa (S3 sirve) y que cada README tenga un GIF o video, para que el repo se entienda aunque la demo no responda. Y tu propio monitor del proyecto 2 puede avisarte cuando algo se cae, lo cual de paso es una buena historia para contar en una entrevista.

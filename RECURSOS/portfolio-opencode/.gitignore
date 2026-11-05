@@ -1,0 +1,15 @@
+# Secretos: nunca en git (solo .env.example con valores ficticios)
+env/
+.env
+*.env
+
+# Dependencias y builds
+node_modules/
+vendor/
+.next/
+out/
+dist/
+coverage/
+
+# Sistema
+.DS_Store

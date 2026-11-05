@@ -1,0 +1,25 @@
+# site/compose.yaml — landing. Included from infra/compose.yaml.
+# Always operate on the "portfolio" project: docker compose -f infra/compose.yaml ...
+
+x-site-defaults: &defaults
+  restart: unless-stopped
+  security_opt: ["no-new-privileges:true"]
+  logging:
+    driver: json-file
+    options: { max-size: "10m", max-file: "3" }
+
+services:
+  site-web:
+    <<: *defaults
+    image: ghcr.io/agustinbertero/portfolio-site:latest
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    networks: [site_edge]
+    deploy:
+      resources:
+        limits: { cpus: "0.25", memory: 64M }
+
+networks:
+  site_edge:
+    internal: true   # gateway ↔ landing

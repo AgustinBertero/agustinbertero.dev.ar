@@ -1,0 +1,8 @@
+# infra/compose.local.yaml — solo en local, para probar el stack completo con las subrutas:
+#   docker compose -f infra/compose.yaml -f infra/compose.local.yaml up -d
+services:
+  gateway:
+    ports:
+      - "127.0.0.1:8080:8080"
+  cloudflared:
+    profiles: [tunnel]   # no arranca en local

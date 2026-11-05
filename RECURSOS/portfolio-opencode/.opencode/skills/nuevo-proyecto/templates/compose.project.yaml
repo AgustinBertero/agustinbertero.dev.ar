@@ -1,0 +1,69 @@
+# projects/<slug>/compose.yaml — producción. Se incluye desde infra/compose.yaml.
+# Reemplazar <slug>. No definir "name:" acá: el proyecto compose es "portfolio".
+
+x-<slug>-defaults: &defaults
+  restart: unless-stopped
+  security_opt: ["no-new-privileges:true"]
+  logging:
+    driver: json-file
+    options: { max-size: "10m", max-file: "3" }
+
+services:
+  <slug>-web:
+    <<: *defaults
+    image: ghcr.io/agustinbertero/portfolio-<slug>:latest
+    env_file: ../../env/<slug>.env
+    networks: [<slug>_edge, <slug>_backend]     # + <slug>_egress si necesita internet
+    cap_drop: [ALL]
+    read_only: true            # si la imagen no lo soporta, quitalo y anotá el motivo acá
+    tmpfs: [/tmp]
+    volumes:
+      - <slug>_storage:/var/www/html/storage    # Laravel; quitar si no aplica
+    depends_on:
+      <slug>-db:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits: { cpus: "0.50", memory: 256M }
+
+  # Colas de Laravel: misma imagen, otro comando. El scheduler, igual con "schedule:work".
+  # <slug>-worker:
+  #   <<: *defaults
+  #   image: ghcr.io/agustinbertero/portfolio-<slug>:latest
+  #   command: ["php", "artisan", "queue:work", "--tries=3", "--max-time=3600"]
+  #   env_file: ../../env/<slug>.env
+  #   networks: [<slug>_backend]
+  #   cap_drop: [ALL]
+  #   depends_on:
+  #     <slug>-db:
+  #       condition: service_healthy
+  #   deploy:
+  #     resources:
+  #       limits: { cpus: "0.25", memory: 256M }
+
+  <slug>-db:
+    <<: *defaults
+    image: postgres:17-alpine        # con postgres:18 el volumen va en /var/lib/postgresql
+    env_file: ../../env/<slug>.env   # POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD
+    networks: [<slug>_backend]
+    volumes:
+      - <slug>_db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits: { cpus: "0.50", memory: 256M }
+
+networks:
+  <slug>_edge:
+    internal: true           # gateway ↔ web
+  <slug>_backend:
+    internal: true           # web ↔ db
+  # <slug>_egress: {}        # solo si la app necesita internet (API de IA, SMTP)
+
+volumes:
+  <slug>_storage:
+  <slug>_db:
