@@ -36,6 +36,9 @@ check("routes exist", () => {
     "favicon.ico",
     "icon.png",
     "apple-icon.png",
+    "og.png",
+    "robots.txt",
+    "sitemap.xml",
     "cv/agustin-bertero-cv.pdf",
     "fonts/archivo-latin.woff2",
     "fonts/courier-prime-400.woff2",
@@ -58,9 +61,21 @@ check("metadata and JSON-LD", () => {
   for (const file of ["index.html", "en/index.html"]) {
     const html = read(file);
     expectIncludes(html, 'rel="canonical"', file);
+    expectIncludes(html, 'href="https://portfolio.bertium.net/', file);
     expectIncludes(html, "application/ld+json", file);
     expectIncludes(html, 'name="description"', file);
+    expectIncludes(html, 'property="og:image"', file);
+    expectIncludes(html, 'name="twitter:card"', file);
+    expectIncludes(html.toLowerCase(), 'hreflang="x-default"', file);
   }
+});
+
+check("robots and sitemap point at the live domain", () => {
+  expectIncludes(read("robots.txt"), "Sitemap: https://portfolio.bertium.net/sitemap.xml", "robots.txt");
+  const sitemap = read("sitemap.xml");
+  expectIncludes(sitemap, "https://portfolio.bertium.net/", "sitemap");
+  expectIncludes(sitemap, "https://portfolio.bertium.net/en/", "sitemap");
+  expectIncludes(sitemap, "https://portfolio.bertium.net/cv/", "sitemap");
 });
 
 check("no phone published", () => {
@@ -74,7 +89,7 @@ check("no third-party scripts or styles", () => {
     const html = read(file);
     const scripts = [...html.matchAll(/<script[^>]+src=["'](https?:\/\/[^"']+)["']/g)].map((m) => m[1]);
     const styles = [...html.matchAll(/<link[^>]+rel=["']stylesheet["'][^>]+href=["'](https?:\/\/[^"']+)["']/g)].map((m) => m[1]);
-    const external = [...scripts, ...styles].filter((url) => !url.startsWith("https://agustinbertero.dev.ar"));
+    const external = [...scripts, ...styles].filter((url) => !url.startsWith("https://portfolio.bertium.net"));
     if (external.length > 0) throw new Error(`${file} loads ${external.join(", ")}`);
   }
 });

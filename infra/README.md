@@ -4,24 +4,18 @@ The portfolio runs on `server1.bertium.net` (mini PC, `192.168.1.135`, Tailscale
 
 ```
 Browser
-  └── Cloudflare edge (*.dev.ar / *.bertium.net)
+  └── Cloudflare edge (portfolio.bertium.net)
         └── Cloudflare Tunnel "portfolio" (systemd)
               └── 127.0.0.1:8080 gateway (nginx-unprivileged)
                     └── site-web:8080 (static Next.js export)
 ```
 
-## dev.ar
+## Public domains
 
-`agustinbertero.dev.ar` is managed at https://dev.ar/dashboard. The space allows **one** record and no NS delegation, so it is not a Cloudflare zone.
+- **Canonical:** `https://portfolio.bertium.net/`.
+- **Alias:** `https://agustinbertero.dev.ar/`, configured in the dev.ar panel as an **HTTP redirect** to `https://portfolio.bertium.net/`.
 
-- Mode: **DNS** (not HTTP redirect).
-- Type: **CNAME**.
-- Value: `portfolio.bertium.net` (no `https://`, no trailing slash).
-- Clear any redirect before saving; the panel does not allow both.
-
-Cloudflare serves `agustinbertero.dev.ar` with the `*.dev.ar` certificate and follows the CNAME to the `portfolio` tunnel. The tunnel ingress also lists `agustinbertero.dev.ar`, so the request reaches the same gateway even though the DNS name lives in the dev.ar zone.
-
-If the CNAME route is not desired, the fallback is dev.ar **Redirección** to `https://portfolio.bertium.net/`; the URL in the browser changes.
+dev.ar allows one A/CNAME record and does not delegate the zone. A CNAME to a proxied hostname in another Cloudflare account returns **1014 (CNAME Cross-User Banned)**. Cloudflare for SaaS would solve it, but the account is asked to enable a paid plan, so the alias uses the redirect instead. Do not switch dev.ar back to DNS/CNAME unless the custom-hostname path is enabled.
 
 ## Cloudflare Tunnel
 
@@ -29,7 +23,7 @@ If the CNAME route is not desired, the fallback is dev.ar **Redirección** to `h
 - Config: `/etc/cloudflared/portfolio.yml` (tracked in `infra/cloudflared/portfolio.yml`).
 - Service: `cloudflared-portfolio.service` (tracked in `infra/systemd/`).
 - Credentials: `/root/.cloudflared/75ea8abd-db17-4f6c-b817-386c4f105439.json`, never committed.
-- Public hostnames: `portfolio.bertium.net` and `agustinbertero.dev.ar` → `http://127.0.0.1:8080`.
+- Public hostnames: `portfolio.bertium.net` (and `agustinbertero.dev.ar`, ready if the alias ever moves back to DNS) → `http://127.0.0.1:8080`.
 - The tunnel is managed with a local config file, not a dashboard token, so `cloudflared tunnel list` and the config on disk are the source of truth.
 
 ## Compose
@@ -46,7 +40,7 @@ docker compose -f infra/compose.yaml -f infra/compose.local.yaml up -d
 
 `.github/workflows/site.yml` builds and pushes the image to GHCR on every push to `main`. `infra/systemd/portfolio-deploy.timer` runs `infra/scripts/pull-deploy.sh` every five minutes, pulls the repo and images, recreates changed containers and reloads the gateway if its config changed.
 
-The deploy user needs Docker access and write access to `/srv/portfolio`. The timer is optional until the first CI image exists; the current image was built locally on server1.
+The deploy user needs Docker access and write access to `/srv/portfolio`.
 
 ## Secrets
 

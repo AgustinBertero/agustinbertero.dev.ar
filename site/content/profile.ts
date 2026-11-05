@@ -16,7 +16,7 @@ export const profile = {
   email: "agustinbertero.dev@gmail.com",
   linkedin: "https://linkedin.com/in/agustinbertero",
   github: "https://github.com/AgustinBertero",
-  site: "agustinbertero.dev.ar",
+  site: "portfolio.bertium.net",
   fileNumber: "AB—2026—001",
 
   role: {

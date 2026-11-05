@@ -2,7 +2,9 @@
 
 Personal site of Agustin Bertero, full stack developer (PHP/Laravel, React, TypeScript, Linux and cloud). It is a static, bilingual page that answers three questions fast: what he builds, with which stack, and where the proof is.
 
-**Live:** https://agustinbertero.dev.ar/ (Spanish) · https://agustinbertero.dev.ar/en/ (English)
+**Live:** https://portfolio.bertium.net/ (Spanish) · https://portfolio.bertium.net/en/ (English)
+
+`agustinbertero.dev.ar` is an alias that redirects here.
 
 ## Why
 

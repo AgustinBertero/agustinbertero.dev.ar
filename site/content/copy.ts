@@ -80,7 +80,7 @@ const es: Copy = {
     sealStrong: "Remoto",
     sealBottom: "2026",
     foot: {
-      site: "agustinbertero.dev.ar",
+      site: "portfolio.bertium.net",
       revision: "Documento 1 de 1 · Revisión 2026.11",
       folio: "Folio 01",
     },
@@ -182,7 +182,7 @@ const en: Copy = {
     sealStrong: "Remote",
     sealBottom: "2026",
     foot: {
-      site: "agustinbertero.dev.ar",
+      site: "portfolio.bertium.net",
       revision: "Document 1 of 1 · Revision 2026.11",
       folio: "Folio 01",
     },

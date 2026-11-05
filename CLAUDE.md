@@ -1,4 +1,4 @@
-# CLAUDE.md — agustinbertero.dev.ar
+# CLAUDE.md — portfolio.bertium.net
 
 ## Stack
 
@@ -35,8 +35,9 @@ make down
 
 ## Deploy
 
+- Public URL: `https://portfolio.bertium.net/`. The `agustinbertero.dev.ar` space in dev.ar is an HTTP redirect to it (dev.ar does not allow a cross-account CNAME to Cloudflare).
 - CI: `.github/workflows/site.yml` runs `make ci` and publishes `ghcr.io/agustinbertero/portfolio-site:latest` and `:<sha>`.
-- Server: `infra/scripts/pull-deploy.sh` (systemd timer every 5 min) pulls the repo and images, then runs `docker compose -f infra/compose.yaml up -d`.
+- Server: `infra/scripts/pull-deploy.sh` (systemd timer every 5 min) pulls the repo and images, then runs `docker compose -f infra/compose.yaml -f infra/compose.local.yaml up -d`.
 - Never publish ports in production; only `infra/compose.local.yaml` binds `127.0.0.1:8080`.
 - `infra/compose.yaml` expects `env/infra.env` with `TUNNEL_TOKEN=...` (git-ignored, mode 600). It is the only production secret.
 - Infrastructure is IaC only. Do not make manual changes on the server.

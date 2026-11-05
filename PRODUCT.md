@@ -24,7 +24,7 @@ Full stack con experiencia operativa real: administra los servidores donde corre
 
 ## Operating Context
 
-- Se publica en `agustinbertero.dev.ar` desde un mini PC propio con Docker y Cloudflare Tunnel. La landing vive en `/`; cada proyecto en `/<slug>/`.
+- Se publica en `portfolio.bertium.net` desde un mini PC propio con Docker y Cloudflare Tunnel. `agustinbertero.dev.ar` redirige al dominio anterior (dev.ar no permite un CNAME entre cuentas Cloudflare). La landing vive en `/`; cada proyecto en `/<slug>/`.
 - El repo es público y `main` llega a producción sola cada 5 minutos.
 - El contenido sale de `RECURSOS/portfolio-opencode/site/content/profile.md`; ese archivo es la única fuente de datos del perfil.
 - Los proyectos arrancan en estado `planned`, pasan a `wip` (visible como "en desarrollo") y solo llegan a `live` con demo funcionando, README completo y revisión de privacidad si aplica.

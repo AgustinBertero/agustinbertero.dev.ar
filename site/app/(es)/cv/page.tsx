@@ -3,9 +3,9 @@ import Link from "next/link";
 import { profile } from "@/content/profile";
 
 export const metadata: Metadata = {
-  title: "CV — Agustin Bertero",
+  title: { absolute: "CV — Agustin Bertero" },
   description:
-    "Currículum de Agustin Bertero, Full Stack Developer. Versión pública sin teléfono.",
+    "Currículum de Agustin Bertero, Full Stack Developer (Laravel, React, TypeScript). Versión pública sin teléfono.",
   alternates: { canonical: "/cv/" },
   robots: { index: true, follow: true },
   openGraph: {
@@ -13,7 +13,15 @@ export const metadata: Metadata = {
     url: "/cv/",
     title: "CV — Agustin Bertero",
     description:
-      "Currículum de Agustin Bertero, Full Stack Developer. Versión pública sin teléfono.",
+      "Currículum de Agustin Bertero, Full Stack Developer (Laravel, React, TypeScript). Versión pública sin teléfono.",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Agustin Bertero, Full Stack Developer — CV público",
+      },
+    ],
   },
 };
 

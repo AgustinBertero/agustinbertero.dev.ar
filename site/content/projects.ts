@@ -76,7 +76,7 @@ export const projects: Project[] = [
       },
     ],
     demo: "/",
-    repo: "https://github.com/AgustinBertero/portfolio",
+    repo: "https://github.com/AgustinBertero/agustinbertero.dev.ar",
   },
 ];
 
