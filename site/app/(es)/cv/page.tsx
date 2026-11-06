@@ -6,7 +6,10 @@ export const metadata: Metadata = {
   title: { absolute: "CV — Agustin Bertero" },
   description:
     "Currículum de Agustin Bertero, Full Stack Developer (Laravel, React, TypeScript). Versión pública sin teléfono.",
-  alternates: { canonical: "/cv/" },
+  alternates: {
+    canonical: "/cv/",
+    languages: { es: "/cv/", en: "/en/cv/", "x-default": "/cv/" },
+  },
   robots: { index: true, follow: true },
   openGraph: {
     type: "profile",
