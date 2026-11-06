@@ -962,7 +962,8 @@ a {
 
 .cv__skills,
 .cv__plain,
-.cv__job ul {
+.cv__job ul,
+.cv__projects {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -970,6 +971,22 @@ a {
   gap: 0.3rem;
   font-size: 0.9375rem;
   line-height: 1.45;
+}
+
+.cv__projects li {
+  margin-bottom: 0.35rem;
+}
+
+.cv__link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--color-rule);
+  text-underline-offset: 2px;
+}
+
+.cv__link:hover {
+  color: var(--color-institution);
+  text-decoration-color: var(--color-institution);
 }
 
 .cv__job {
@@ -1048,7 +1065,8 @@ a {
   .cv p,
   .cv__skills,
   .cv__plain,
-  .cv__job ul {
+  .cv__job ul,
+  .cv__projects {
     font-size: 9.4pt;
     line-height: 1.4;
   }

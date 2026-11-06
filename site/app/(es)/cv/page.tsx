@@ -49,8 +49,9 @@ export default function CvPage() {
               __html: `<!--email_off-->${profile.email}<!--/email_off-->`,
             }}
           />{" "}
-          · linkedin.com/in/agustinbertero · github.com/AgustinBertero ·{" "}
-          {profile.site}
+          · <a className="cv__link" href="https://linkedin.com/in/agustinbertero">linkedin.com/in/agustinbertero</a>{" "}
+          · <a className="cv__link" href="https://github.com/AgustinBertero">github.com/AgustinBertero</a>{" "}
+          · <a className="cv__link" href="https://portfolio.bertium.net/">portfolio.bertium.net</a>
         </p>
         <p className="cv__contact">
           {profile.location[locale]} · {profile.nationality[locale]}
@@ -92,6 +93,32 @@ export default function CvPage() {
             </ul>
           </article>
         ))}
+      </section>
+
+      <section>
+        <h2>Proyectos</h2>
+        <ul className="cv__projects">
+          <li>
+            <strong>Helpdesk con triage por IA</strong> — Laravel, Inertia, React, TypeScript,
+            PostgreSQL y DeepSeek. Clasificación, resumen y respuesta sugerida con RAG y fallback
+            por reglas.{" "}
+            <a className="cv__link" href="https://portfolio.bertium.net/helpdesk/">Demo</a>{" "}
+            ·{" "}
+            <a className="cv__link" href="https://portfolio.bertium.net/projects/helpdesk/">Caso</a>
+          </li>
+          <li>
+            <strong>Gestión de expedientes para un estudio jurídico</strong> — Laravel, React,
+            TypeScript y PostgreSQL. Documentos cifrados, roles, auditoría y acceso privado.{" "}
+            <a className="cv__link" href="https://portfolio.bertium.net/projects/legal-cases/">Caso</a>
+          </li>
+          <li>
+            <strong>Portfolio</strong> — Next.js, TypeScript y Tailwind, export estático servido
+            con Docker y Cloudflare Tunnel.{" "}
+            <a className="cv__link" href="https://portfolio.bertium.net/">Demo</a>{" "}
+            ·{" "}
+            <a className="cv__link" href="https://github.com/AgustinBertero/agustinbertero.dev.ar">Código</a>
+          </li>
+        </ul>
       </section>
 
       <section>
