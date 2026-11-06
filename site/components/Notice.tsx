@@ -10,7 +10,7 @@ export function Notice({ locale }: { locale: Locale }) {
     {
       label: locale === "es" ? "CV (PDF)" : "CV (PDF)",
       value: locale === "es" ? "Sin teléfono" : "No phone number",
-      href: "/cv/agustin-bertero-cv.pdf",
+      href: locale === "es" ? "/cv/agustin-bertero-cv.pdf" : "/cv/agustin-bertero-cv-en.pdf",
     },
   ];
 

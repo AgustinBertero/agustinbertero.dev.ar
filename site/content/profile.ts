@@ -153,39 +153,39 @@ export const profile = {
   stack: [
     {
       label: { es: "Backend", en: "Backend" },
-      items: "PHP 8, Laravel, Node.js, REST, GraphQL",
+      items: { es: "PHP 8, Laravel, Node.js, REST, GraphQL", en: "PHP 8, Laravel, Node.js, REST, GraphQL" },
     },
     {
       label: { es: "Frontend", en: "Frontend" },
-      items: "React, TypeScript, JavaScript, Next.js, Tailwind CSS",
+      items: { es: "React, TypeScript, JavaScript, Next.js, Tailwind CSS", en: "React, TypeScript, JavaScript, Next.js, Tailwind CSS" },
     },
     {
       label: { es: "Bases de datos", en: "Data" },
-      items: "MySQL, PostgreSQL",
+      items: { es: "MySQL, PostgreSQL", en: "MySQL, PostgreSQL" },
     },
     {
       label: { es: "Infraestructura", en: "Infrastructure" },
-      items: "Linux (Ubuntu, Debian), Docker, Docker Compose, Nginx, CI/CD, Git, Portainer",
+      items: { es: "Linux (Ubuntu, Debian), Docker, Docker Compose, Nginx, CI/CD, Git, Portainer", en: "Linux (Ubuntu, Debian), Docker, Docker Compose, Nginx, CI/CD, Git, Portainer" },
     },
     {
       label: { es: "Cloud y redes", en: "Cloud and networking" },
-      items: "AWS (EC2, S3, VPC), Cloudflare (Zero Trust, Tunnels), DNS, SSL/TLS",
+      items: { es: "AWS (EC2, S3, VPC), Cloudflare (Zero Trust, Tunnels), DNS, SSL/TLS", en: "AWS (EC2, S3, VPC), Cloudflare (Zero Trust, Tunnels), DNS, SSL/TLS" },
     },
     {
       label: { es: "CMS y ERP", en: "CMS and ERP" },
-      items: "Odoo, WordPress, PrestaShop, Magento, Drupal",
+      items: { es: "Odoo, WordPress, PrestaShop, Magento, Drupal", en: "Odoo, WordPress, PrestaShop, Magento, Drupal" },
     },
     {
       label: { es: "Paneles", en: "Control panels" },
-      items: "HestiaCP, Plesk, cPanel, DirectAdmin",
+      items: { es: "HestiaCP, Plesk, cPanel, DirectAdmin", en: "HestiaCP, Plesk, cPanel, DirectAdmin" },
     },
     {
       label: { es: "Seguridad", en: "Security" },
-      items: "GDPR, LOPD, Ley 25.326, auditoría de accesos, protección de datos",
+      items: { es: "GDPR, LOPD, Ley 25.326, auditoría de accesos, protección de datos", en: "GDPR, LOPD, Argentine Law 25.326, access audits, data protection" },
     },
     {
       label: { es: "Complementarios", en: "Working knowledge" },
-      items: "Terraform, Ansible, Python, MongoDB (nivel básico)",
+      items: { es: "Terraform, Ansible, Python, MongoDB (nivel básico)", en: "Terraform, Ansible, Python, MongoDB (basic)" },
     },
   ],
 

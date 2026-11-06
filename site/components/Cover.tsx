@@ -36,7 +36,11 @@ export function Cover({ locale }: { locale: Locale }) {
               {cover.primary}
               <span className="btn-ref">{cover.primaryRef}</span>
             </a>
-            <a className="btn" href="/cv/agustin-bertero-cv.pdf" download>
+            <a
+              className="btn"
+              href={locale === "es" ? "/cv/agustin-bertero-cv.pdf" : "/cv/agustin-bertero-cv-en.pdf"}
+              download
+            >
               {cover.secondary}
               <span className="btn-ref">{cover.secondaryRef}</span>
             </a>

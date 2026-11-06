@@ -37,10 +37,22 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://portfolio.bertium.net/en/cv/</loc>
+    <lastmod>2026-11-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://portfolio.bertium.net/cv/</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://portfolio.bertium.net/cv/agustin-bertero-cv-en.pdf</loc>
+    <lastmod>2026-11-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://portfolio.bertium.net/cv/agustin-bertero-cv.pdf</loc>

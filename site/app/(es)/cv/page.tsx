@@ -25,11 +25,27 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  url: "https://portfolio.bertium.net/cv/",
+  inLanguage: "es-AR",
+  mainEntity: {
+    "@type": "Person",
+    name: profile.name,
+    jobTitle: "Full Stack Developer",
+    url: "https://portfolio.bertium.net/",
+    email: profile.email,
+    sameAs: [profile.linkedin, profile.github],
+  },
+};
+
 export default function CvPage() {
   const locale = "es" as const;
 
   return (
     <main className="cv">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="cv__bar mono">
         <Link href="/" className="link">
           Volver al portfolio
@@ -69,7 +85,7 @@ export default function CvPage() {
         <ul className="cv__skills">
           {profile.stack.map((group) => (
             <li key={group.label[locale]}>
-              <strong>{group.label[locale]}:</strong> {group.items}
+              <strong>{group.label[locale]}:</strong> {group.items[locale]}
             </li>
           ))}
         </ul>

@@ -7,7 +7,7 @@ export function Findings({ locale }: { locale: Locale }) {
       {profile.stack.map((group) => (
         <div className="findings__row" key={group.label[locale]}>
           <dt className="mono">{group.label[locale]}</dt>
-          <dd>{group.items}</dd>
+          <dd>{group.items[locale]}</dd>
         </div>
       ))}
     </dl>
